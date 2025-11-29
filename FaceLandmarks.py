@@ -17,11 +17,6 @@ class FaceLandmarks:
     def get_all_landmarks_for_frame(self, frame_number):
         return self.data.get(frame_number, {})
 
-    def reset_landmarks_for_face_id(self, frame_number, face_id):
-        if frame_number in self.data:
-            landmarks = self.data.get(frame_number, {}).get(face_id, None)
-            if landmarks is not None:
-                landmarks = [(0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0), (0, 0)]
 
     def remove_all_landmarks_for_frame(self, frame_number):
         if frame_number in self.data:
@@ -109,5 +104,6 @@ class FaceLandmarks:
 
                 self.widget['MouthRightYSlider'].set(0, request_frame=False)
                 self.parameters['MouthRightYSlider'] = 0
+
 
             self.add_action('parameters', self.parameters)
