@@ -96,6 +96,10 @@ def transform(img, center, output_size, scale, rotation):
     t = t1 + t2 + t3 + t4
     M = t.params[0:2]
 
+  src3 = np.array([[39.730, 51.138], [72.270, 51.138], [56.000, 68.493],
+                 [42.463, 87.010], [69.537, 87.010]],
+                dtype=np.float32)
+
     cropped = v2.functional.affine(img, np.rad2deg(t.rotation), (t.translation[0], t.translation[1]) , t.scale, 0, interpolation=v2.InterpolationMode.BILINEAR, center = (0,0) )
     cropped = v2.functional.crop(cropped, 0,0, output_size, output_size)
 
@@ -2038,5 +2042,6 @@ def get_face_orientation_t(face_size, lmk):
     # Calcolo dell'angolo in radianti e conversione in gradi
     angle_rad = torch.atan2(R[1, 0], R[0, 0])  # Forma (1,)
     angle_deg = torch.rad2deg(angle_rad)
+
 
     return angle_deg
